@@ -32,6 +32,15 @@ android {
         versionCode 18
         versionName '2.0.3'
         minSdkVersion 24
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental": "true",
+                        "room.expandProjection": "true"
+                ]
+            }
+        }
         externalNativeBuild {
             cmake {
                 cppFlags ''
@@ -83,7 +92,11 @@ android {
         }
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     //implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.okitcom:SwitchButton:1.4.5'
@@ -100,7 +113,7 @@ dependencies {
     //bluetooth communicator
     //implementation 'com.github.niedev:BluetoothCommunicator:1.0.6'
     //gallery image selector
-    implementation 'com.github.niedev:GalleryImageSelector:1.0.7'
+    implementation(name: 'GalleryImageSelector', ext: 'aar')
     //ONNX Runtime
     implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.18.0'  //latest.release
     implementation 'com.microsoft.onnxruntime:onnxruntime-extensions-android:0.11.0'   //latest.release
