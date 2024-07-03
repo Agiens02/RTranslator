@@ -140,7 +140,4 @@
     <string name="conversation_mode">Modalità conversazione</string>
     <string name="walkietalkie_mode_running">La modalità WalkieTalike èin esecuzione</string>
     <string name="conversation_mode_running">La modalità conversazione è in esecuzione</string>
-    <string name="error_storage" >Spazio di archiviazione insufficiente, il download potrebbe non riuscire</string>
-    <string name="fix">fix</string>
-    <string name="description_integrity_check">"Controllo integrità di%1$s  "</string>
 </resources>
