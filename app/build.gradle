@@ -32,15 +32,6 @@ android {
         versionCode 18
         versionName '2.0.3'
         minSdkVersion 24
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [
-                        "room.schemaLocation": "$projectDir/schemas".toString(),
-                        "room.incremental": "true",
-                        "room.expandProjection": "true"
-                ]
-            }
-        }
         externalNativeBuild {
             cmake {
                 cppFlags ''
@@ -92,7 +83,6 @@ android {
         }
     }
 }
-
 
 dependencies {
     //implementation fileTree(include: ['*.jar'], dir: 'libs')

@@ -32,7 +32,7 @@
     <string name="conversation">conversazione</string>
     <string name="connection">connessione</string>
     <string name="translate">Traduci</string>
-
+    <string name="fix">correggi</string>
     <string name="notification_channel_name">notifica uso in background</string>
 
     <string name="age_check_box">Dichiaro di avere almeno 14 anni</string>
@@ -108,7 +108,8 @@
     <string name="header_key">Chiave APIs</string>
 
     <string name="description_cost">Il riconoscimento vocale arrotonda il costo di ogni richiesta al più vicino multiplo di 15 secondi, il costo medio totale (sia traduttore che riconoscimento vocale), senza tenere conto dell\' arrotondamento, è di 2,5 dollari l\' ora, inoltre per WalkieTalkie bisogna aggiungere ai costi di traduzione anche quelli del rilevamento della lingua, per approfondire leggere il <a href="https://github.com/niedev/RTranslator">tutorial</a></string>
-    <string name="description_discovery">In questa schermata si cercano e ci rendiamo visibili ad altri dispositivi che usano RTranslator         per poter stabilire una connessione con loro e iniziare la conversazione</string>
+    <string name="description_discovery">In questa schermata si cercano e ci rendiamo visibili ad altri dispositivi che usano RTranslator
+        per poter stabilire una connessione con loro e iniziare la conversazione</string>
     <string name="description_key">Per sapere come procurarsi il file chiave leggere il <a href="https://github.com/niedev/RTranslator">tutorial</a></string>
     <string name="description_fragment_user_data">Il tuo nome verrà visualizzato da tutti i dispositivi nelle vicinanze, mentre la tua immagine del profilo solo dai dispositivi con cui hai già avuto conversazioni</string>
     <string name="description_fragment_download">Adesso RTranslator scaricherà i modelli di reti neurali necessari per la traduzione e il riconoscimento vocale, una volta finito potrai iniziare a usare l\'app (anche offline).</string>
@@ -141,6 +142,6 @@
     <string name="walkietalkie_mode_running">La modalità WalkieTalike èin esecuzione</string>
     <string name="conversation_mode_running">La modalità conversazione è in esecuzione</string>
     <string name="error_storage" >Spazio di archiviazione insufficiente, il download potrebbe non riuscire</string>
-    <string name="fix">fix</string>
-    <string name="description_integrity_check">"Controllo integrità di%1$s  "</string>
+
+    <string name="description_integrity_check">Verifica dell\'integrità di %1$s</string>
 </resources>
