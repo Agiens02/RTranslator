@@ -62,7 +62,7 @@ Bluetooth LE device search has been improved.
 Fixed some bugs.
 <br /><br />
 
-<h3>Performance</h3>
+<h3>Performance requirements</h3>
 
 I have optimized the AI models a lot to minimize RAM consumption and execution time, despite this however to be able to use the app without the risk of crashing you need a phone with at least **6GB of RAM**, and to have a good enough execution time you need a phone with a fast enough CPU.
 
@@ -76,7 +76,9 @@ To install the app, download the latest version of the app apk file from https:/
 
 <a href='https://github.com/niedev/RTranslator/releases'><img alt='Get it on GitHub' src='https://github.com/niedev/RTranslator/blob/v2.00/images/get_it_on_github.png' style="width: 180px; height: 58px;" /></a>
 
-On the first launch, you will need to download the models for translation and speech recognition (1.2GB) and once done you can start translating.
+On the first launch, RTranslator will automatically download the models for translation and speech recognition (1.2GB) and once done you can start translating.
+
+The initial download will get the models from GitHub, however <a href="https://www.reddit.com/r/China/comments/v8fv0p/why_is_github_so_slow_in_china_recently/">in some regions GitHub is very slow</a>, those who have problems of this kind can download the models separately from a computer (or in general in whatever way they prefer) and insert them manually into the app following <a href="https://github.com/niedev/RTranslator/blob/v2.00/Sideloading.md">this guide</a>.
 <br /><br />
 
 
@@ -85,6 +87,16 @@ On the first launch, you will need to download the models for translation and sp
 The languages supported are as follows:
 
 Arabic, Bulgarian, Catalan, Chinese, Czech, Danish, German, Greek, English, Spanish, Finnish, French, Croatian, Italian, Japanese, Korean, Dutch, Polish, Portuguese, Romanian, Russian, Slovak, Swedish, Tamil, Thai, Turkish, Ukrainian, Urdu, Vietnamese.
+<br /><br />
+
+
+<h3>Text To Speech</h3>
+
+To speak, RTranslator uses the system TTS of your phone, so the quality of the latter and the supported languages ​​depend on the system TTS of your phone.
+
+The supported languages ​​seen above are all compatible with <a href="https://play.google.com/store/apps/details?id=com.google.android.tts&pcampaignid=web_share">Google TTS</a>, which is the recommended TTS (although you can use the TTS you want).
+
+To change the system TTS (and therefore the TTS used by RTranslator), download the TTS you want to use from the Play Store, or from the source you prefer, and open RTranslator, then open its settings (top right) and, in the "Output" section, click on "Text to Speech", at this point the system settings will open in the section where you can select the preferred system TTS engine (among those installed), at this point, if you have changed the preferred engine, restart RTranslator to apply the changes.
 <br /><br />
 
 <h3>Privacy</h3>
@@ -111,8 +123,25 @@ And the following AI models:
 <a href="https://github.com/facebookresearch/fairseq/tree/nllb">NLLB</a> (open-source, but only for non-commercial use): The model used is NLLB-Distilled-600M with KV cache.
 
 <a href="https://github.com/openai/whisper">Whisper</a> (open-source): The model used is Whisper-Small-244M with KV cache.
+<br /><br />
 
-I converted both models to onnx format and quantized them in int8 (excluding some weights to ensure almost zero quality loss), also I separated some parts of the models to reduce RAM consumption (without this separation some weights were duplicated at runtime consuming more RAM than expected).
+<h3>Performance of the models</h3>
+
+I converted both NLLB and Whisper to onnx format and quantized them in int8 (excluding some weights to ensure almost zero quality loss), I also separated some parts of the models to reduce RAM consumption (without this separation some weights were duplicated at runtime consuming more RAM than expected) and done other optimizations to reduce execution time.
+
+Here are the results of my optimizations:
+
+|         | normal NLLB onnx model <br />(full int8, no kv-cache)  | RTranslator NLLB onnx model <br /> (partial int8, with kv-cache, separated parts)  |
+|---------| ------------------------------------------- | ---------------------------------------------------------- |
+|RAM Consumption| 2.5 GB  | 1.3GB &nbsp;&nbsp;(1.9x improvement)  |
+|Execution time for 75 tokens| 8s  | 2s &nbsp;&nbsp;(4x improvement)  |
+
+|         | Whisper onnx model optimized with Olive <br /> (full int8, with kv-cache)  | RTranslator Whisper onnx model <br /> (partial int8, with kv-cache, separated parts)  |
+|---------| -------------------------------------------------------------- | ------------------------------------------------------------- |
+|RAM Consumption| 1.4 GB  | 0.9 GB &nbsp;&nbsp;(1.5x improvement)|
+|Execution time for 11s audio| 1.9s  | 1.6s &nbsp;&nbsp;(1.2x improvement)|
+
+**N.B.** RTranslator Whisper model can also consume 0.5 GB of RAM but with an execution time of 2.1s (this mode is used for phones with less than 8 GB of RAM)
 <br /><br />
 
 <h3>Donations</h3>
